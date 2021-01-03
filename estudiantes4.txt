@@ -1,0 +1,4 @@
+234,cedula,carlos,pedro,Fejardo,molina,1,1,1
+111213,Cedula,zanoni,segundo nombre,primer apellido, segundo apellido,1.0,2.0,3.0
+111213,Cedula,zanoni,segundo nombre,primer apellido, segundo apellido,1.0,2.0,5.0
+111213,Cedula,zanoni,segundo nombre,primer apellido, segundo apellido,1.0,2.0,9.0
