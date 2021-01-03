@@ -39,8 +39,8 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
     private Container contentPane;
     private String nombrearchivo = "";
 //    private Guardar_archivo_plano guardar_log;
-    private JLabel  Nota1_JLabel_color, Nota2_JLabel_color, Nota3_JLabel_color, Nota, Informacion_personal_lbl, informe_JLabel, ingrese_notas;
-    private JButton btn_salir,Buscar, reset, clear, btn_registrar;
+    private JLabel Nota1_JLabel_color, Nota2_JLabel_color, Nota3_JLabel_color, Nota, Informacion_personal_lbl, informe_JLabel, ingrese_notas;
+    private JButton btn_salir, Buscar, reset, clear, btn_registrar;
     private JTextField buscar, numero_identificacion_JTextField, primer_nombre_JTextField, segundo_nombre_JTextField, primer_apellido_JTextField, segundo_apellido_JTextField, Nota1_JComboBox, Nota2_JComboBox, Nota3_JComboBox;
     private JTextArea informe_estudiante_JTextArea, informe_JTextArea;
     JRadioButton cedula_ciudadania, tarjeta_identidad, cedula_extranjeria, masculino, femenido, Otro;
@@ -413,49 +413,51 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
     ////         Acciones Botones  //////
     @Override
     public void actionPerformed(ActionEvent e) {
-          Estudiante estudiante1 = new Estudiante();
-        System.out.println(e.getSource()==cedula_ciudadania);
+        Estudiante estudiante1 = new Estudiante();
+        System.out.println(e.getSource() == cedula_ciudadania);
         if (e.getSource() == btn_registrar) {
-         estudiante1.setDocumentoIdentificacion(numero_identificacion_JTextField.getText());
-           estudiante1.setPrimer_nombre( primer_nombre_JTextField.getText());
-           estudiante1.setSegundo_nombre(segundo_nombre_JTextField.getText()); 
-                 estudiante1.setPrimer_apellido(primer_apellido_JTextField.getText()); 
-                 estudiante1.setSegundo_apellido(segundo_apellido_JTextField.getText());
-              
+            estudiante1.setDocumentoIdentificacion(numero_identificacion_JTextField.getText());
+            estudiante1.setPrimer_nombre(primer_nombre_JTextField.getText());
+            estudiante1.setSegundo_nombre(segundo_nombre_JTextField.getText());
+            estudiante1.setPrimer_apellido(primer_apellido_JTextField.getText());
+            estudiante1.setSegundo_apellido(segundo_apellido_JTextField.getText());
+
             if (Double.parseDouble(Nota1_JComboBox.getText()) >= 0 && Double.parseDouble(Nota1_JComboBox.getText()) <= 5) {
-                
+
                 estudiante1.setNota1(Nota1_JComboBox.getText());
                 Nota1_JLabel_color.setBackground(Color.GREEN);
 
                 Nota1_JLabel_color.setText("Nota 1 Valida     " + Double.parseDouble(Nota1_JComboBox.getText()));
                 nota1 = Double.parseDouble(Nota1_JComboBox.getText());
                 Nota1_JLabel_color.setVisible(true);
-                informe_JTextArea.setText(informe_JTextArea.getText() + nota1);
+
             } else {
                 Nota1_JLabel_color.setBackground(Color.RED);
                 Nota1_JLabel_color.setText("Nota 1 no Valida");
                 Nota1_JLabel_color.setVisible(true);
                 nota1 = 0;
-
+                estudiante1.setNota1("0");
             }
 
             if (Double.parseDouble(Nota2_JComboBox.getText()) >= 0 && Double.parseDouble(Nota2_JComboBox.getText()) <= 5) {
                 Nota2_JLabel_color.setBackground(Color.GREEN);
+                estudiante1.setNota2(Nota2_JComboBox.getText());
                 nota2 = Double.parseDouble(Nota2_JComboBox.getText());
                 Nota2_JLabel_color.setText("Nota 2 Valida   ");
                 Nota2_JLabel_color.setVisible(true);
-                informe_JTextArea.setText(informe_JTextArea.getText() + nota2);
+
             } else {
                 Nota2_JLabel_color.setBackground(Color.RED);
                 Nota2_JLabel_color.setText("Nota 2 no Valida  ");
                 Nota2_JLabel_color.setVisible(true);
                 nota2 = 0;
-
+                estudiante1.setNota2("0");
             }
             if (Double.parseDouble(Nota3_JComboBox.getText()) >= 0 || Double.parseDouble(Nota3_JComboBox.getText()) <= 5) {
                 Nota3_JLabel_color.setBackground(Color.GREEN);
+                estudiante1.setNota3(Nota3_JComboBox.getText());
                 nota3 = Double.parseDouble(Nota3_JComboBox.getText());
-                informe_JTextArea.setText(informe_JTextArea.getText() + nota3);
+//                informe_JTextArea.setText(informe_JTextArea.getText() + nota3);
                 Nota3_JLabel_color.setText("Nota 3 Valida");
                 Nota3_JLabel_color.setVisible(true);
 
@@ -464,48 +466,54 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
                 Nota3_JLabel_color.setBackground(Color.RED);
                 Nota3_JLabel_color.setText("Nota 3 no Valida");
                 Nota3_JLabel_color.setVisible(true);
-
+                estudiante1.setNota3("0");
             }
 
-            if (cedula_ciudadania.isSelected()==true || tarjeta_identidad.isSelected() || cedula_extranjeria.isSelected()) {
+            if (cedula_ciudadania.isSelected() == true || tarjeta_identidad.isSelected() || cedula_extranjeria.isSelected()) {
                 if (cedula_ciudadania.isSelected()) {
                     System.out.println("ciudadanía");
-                    setInforme_estudiante(getInforme_estudiante() + "\n  cedula de ciudadanía");
+
+                    estudiante1.setTipo_documento("cedula de ciudadanía");
                 } else if (tarjeta_identidad.isSelected()) {
-                    setInforme_estudiante(getInforme_estudiante() + "tarjeta de identidad");
+
+                    estudiante1.setTipo_documento("tarjeta de identidad");
                     System.out.println("identidad");
                 } else if (cedula_extranjeria.isSelected()) {
                     System.out.println("extranjeria");
                     setInforme_estudiante(getInforme_estudiante() + "cedula de extranjeria");
+                    estudiante1.setTipo_documento("cedula de extranjeria");
                 }
 
-
-            }else{
+            } else {
+                estudiante1.setTipo_documento("no definido");
                 System.out.println("no se seleccion tipo documento");
                 System.out.println(cedula_ciudadania.isSelected());
-                 System.out.println(tarjeta_identidad);
-                  System.out.println(cedula_extranjeria.isSelected());
+                System.out.println(tarjeta_identidad.isSelected());
+                System.out.println(cedula_extranjeria.isSelected());
             }
 
             if (masculino.isSelected() || femenido.isSelected() || Otro.isSelected()) {
                 if (masculino.isSelected()) {
                     System.out.println("masculino");
-                    setInforme_estudiante(getInforme_estudiante() + "\n  cedula de ciudadanía");
+                    estudiante1.setGenero("masculino");
+
                 } else if (femenido.isSelected()) {
-                    setInforme_estudiante(getInforme_estudiante() + "\n tarjeta de identidad");
+                    estudiante1.setGenero("femenino");
+
                     System.out.println("femenido");
                 } else if (Otro.isSelected()) {
                     System.out.println("Otro");
-                    setInforme_estudiante(getInforme_estudiante() + "\n cedula de extranjeria");
+                    estudiante1.setGenero("otro");
+
                 }
 
-
-            }else{
+            } else {
+                estudiante1.setGenero("No definido");
                 System.out.println("no se seleccion genero");
             }
 
             try {
-                setInforme_estudiante(getInforme_estudiante() + "\n  " + nota1 + "\n  " + nota2 + "\n  " + nota3 + "\n  " + PromedioEstudiante(nota1, nota2, nota3));
+                setInforme_estudiante( ""+PromedioEstudiante(nota1, nota2, nota3));
             } catch (IOException ex) {
                 String mens = "" + ex;
 
@@ -517,7 +525,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
 //////////                    Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex1);
 //////////                }
             }
-            informe_JTextArea.setText(getInforme_estudiante());
+           
 
 //           if (file.exists()) {
 //
@@ -525,10 +533,13 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
 //
 //           }
 //           estudiante1.CrearGuardarArchivoEstudiante("Cedula",numero_identificacion_JTextField.getText(),"genero",primer_nombre_JTextField.getText(),segundo_nombre_JTextField.getText(),primer_apellido_JTextField.getText(),segundo_apellido_JTextField.getText(),""+nota1,""+nota2,""+nota3);
-             estudiante1.AgregarNuevosEstudiantes("Cedula",numero_identificacion_JTextField.getText(),"masculino",primer_nombre_JTextField.getText(),segundo_nombre_JTextField.getText(),primer_apellido_JTextField.getText(),segundo_apellido_JTextField.getText(),""+nota1,""+nota2,""+nota3);
-
-
-
+            estudiante1.AgregarNuevosEstudiantes(estudiante1.getTipo_documento(), estudiante1.getDocumentoIdentificacion(), estudiante1.getGenero(), estudiante1.getPrimer_nombre(),estudiante1.getSegundo_nombre(),estudiante1.getPrimer_apellido(),estudiante1.getSegundo_apellido(),  estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3());
+ informe_JTextArea.setText(informe_JTextArea.getText()+"hola"+
+         estudiante1.getTipo_documento()+" , " + estudiante1.getDocumentoIdentificacion()+" , " +
+         estudiante1.getGenero()+" , " + estudiante1.getPrimer_nombre()+" , " +
+         estudiante1.getSegundo_nombre()+" , " +estudiante1.getPrimer_apellido()+" , " +
+         estudiante1.getSegundo_apellido()+" , " +  estudiante1.getNota1()+" , " + estudiante1.getNota2()+" , " +
+         estudiante1.getNota3());
         }
 
         if (e.getSource() == reset) {
@@ -538,12 +549,15 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
 
         } else if (e.getSource() == btn_salir) {
             System.exit(0);
-        }else if (e.getSource() == Buscar) {
-//                estudiante1.VerEstudiantes();
-                System.out.println("#############   Buscar  #############");
-                estudiante1.BuscarEstudiantes(buscar.getText());
+        } else if (e.getSource() == Buscar) {
+            informe_JTextArea.setText( informe_JTextArea.getText()+ estudiante1.VerEstudiantes());
+               System.out.println(
+                       estudiante1.VerEstudiantes(
+                       )
+               ); 
+            System.out.println("#############   Buscar  #############");
+//            estudiante1.BuscarEstudiantes(buscar.getText());
         }
-
 
     }
 

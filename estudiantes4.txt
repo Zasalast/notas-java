@@ -2,3 +2,13 @@
 111213,Cedula,zanoni,segundo nombre,primer apellido, segundo apellido,1.0,2.0,3.0
 111213,Cedula,zanoni,segundo nombre,primer apellido, segundo apellido,1.0,2.0,5.0
 111213,Cedula,zanoni,segundo nombre,primer apellido, segundo apellido,1.0,2.0,9.0
+# identificacion,no definido,primer nombre ,segundo nombre,primer apellido, segundo apellido,1,1,1
+5555555555555,no definido,alex,alexis,gonzales,perdomo,4,4,4
+5555555555555,no definido,alex,alexis,gonzales,perdomo,4,4,4
+77777777777,no definido,alex,alexis,gonzales,perdomo,4,4,4
+77777777777,no definido,alex,alexis,gonzales,perdomo,4,5,3
+11111111111,no definido,primer nombre ,segundo nombre,primer apellido, segundo apellido,2,2,2
+11111111111,no definido,primer nombre ,segundo nombre,primer apellido, segundo apellido,2,2,2
+11111111111,no definido,primer nombre ,segundo nombre,primer apellido, segundo apellido,2,2,2
+11111111111,no definido,primer nombre ,segundo nombre,primer apellido, segundo apellido,2,2,2
+11111111111,no definido,primer nombre ,segundo nombre,primer apellido, segundo apellido,2,2,2

@@ -186,9 +186,10 @@ public class Estudiante {
         //añade un estudiante más al archivo
         OperacionArchivo.aniadirArchivo(listaEstudiantes);
     }
-
-    void VerEstudiantes() {
-
+    
+  String VerEstudiantes() {
+//    void VerEstudiantes() {
+String mostrar = null;
         // lista para recibir los objetos estudiantes desde el archivo
         ArrayList listaLeida = new ArrayList<>();
 
@@ -204,8 +205,13 @@ public class Estudiante {
                     + " , " + estudiante.getSegundo_apellido()
                     + " , " + estudiante.getNota1()
                     + " , " + estudiante.getNota2()
-                    + " , " + estudiante.getNota3());
+                    + " , " + estudiante.getNota3()
+            )
+                    ;
+//            System.out.println(mostrar);
+//            return mostrar;
         }
+        return mostrar;
     }
     
       void BuscarEstudiantes(String bus) {
@@ -227,7 +233,7 @@ public class Estudiante {
                     + " , " + estudiante.getSegundo_apellido()
                     + " , " + estudiante.getNota1()
                     + " , " + estudiante.getNota2()
-                    + " , " + estudiante.getNota3()); 
+                    + " , " + estudiante.getNota3()+"/n"); 
             }else{
                 System.out.println("no encontrado");
             }
