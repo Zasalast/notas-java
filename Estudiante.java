@@ -1,6 +1,9 @@
 package javaapplication9;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Estudiante {
 
@@ -128,8 +131,7 @@ public class Estudiante {
             String Nota2,
             String Nota3
     ) {
-        
-        
+
         //      estructura Array List para guardar los objetos estudiantes
         ArrayList listaEstudiantes = new ArrayList<>();
 
@@ -153,6 +155,9 @@ public class Estudiante {
         OperacionArchivo.crearArchivo(listaEstudiantes);
     }
 
+    
+    
+    
     void AgregarNuevosEstudiantes(
             String Tipo_documento,
             String DocumentoIdentificacion,
@@ -168,10 +173,10 @@ public class Estudiante {
         ArrayList listaEstudiantes = new ArrayList<>();
 
         // estudiante 1
-     Estudiante estudiante1 = new Estudiante();
+        Estudiante estudiante1 = new Estudiante();
         estudiante1.setTipo_documento(Tipo_documento);
         estudiante1.setDocumentoIdentificacion(DocumentoIdentificacion);
-        estudiante1.setGenero(Genero);;
+        estudiante1.setGenero(Genero);
         estudiante1.setPrimer_nombre(Primer_nombre);;
         estudiante1.setSegundo_nombre(Segundo_nombre);;
         estudiante1.setPrimer_apellido(Primer_apellido);;
@@ -186,58 +191,75 @@ public class Estudiante {
         //añade un estudiante más al archivo
         OperacionArchivo.aniadirArchivo(listaEstudiantes);
     }
+
     
-  String VerEstudiantes() {
+    
+    
+    String VerEstudiantes() {
 //    void VerEstudiantes() {
-String mostrar = null;
+        String mostrar = "";
         // lista para recibir los objetos estudiantes desde el archivo
         ArrayList listaLeida = new ArrayList<>();
 
         // asignar a la lista los objetos
         listaLeida = OperacionArchivo.leerArchivo();
         for (Estudiante estudiante : (ArrayList<Estudiante>) listaLeida) {
-            System.out.println(
-                    estudiante.getTipo_documento() + " , " + estudiante.getDocumentoIdentificacion()
-                    + " , " + estudiante.getGenero()
-                    + " , " + estudiante.getPrimer_nombre()
-                    + " , " + estudiante.getSegundo_nombre()
-                    + " , " + estudiante.getPrimer_apellido()
-                    + " , " + estudiante.getSegundo_apellido()
-                    + " , " + estudiante.getNota1()
-                    + " , " + estudiante.getNota2()
-                    + " , " + estudiante.getNota3()
-            )
-                    ;
-//            System.out.println(mostrar);
-//            return mostrar;
+
+            mostrar = mostrar + (" \n \n Tipo Documneto " + estudiante.getTipo_documento() + " , documento identificacion" + estudiante.getDocumentoIdentificacion()
+                    + " ,  genero " + estudiante.getGenero()
+                    + " , primer_nombre" + estudiante.getPrimer_nombre()
+                    + " , segundo nombre " + estudiante.getSegundo_nombre()
+                    + " , primer apellido" + estudiante.getPrimer_apellido()
+                    + " , segundo apellido" + estudiante.getSegundo_apellido()
+                    + " , nota 1" + estudiante.getNota1()
+                    + " , nota 2" + estudiante.getNota2()
+                    + " , nota 3" + estudiante.getNota3() + " \n ");
+
         }
         return mostrar;
     }
-    
-      void BuscarEstudiantes(String bus) {
 
+    
+    
+    
+    
+    String BuscarEstudiantes(String bus) {
+        System.out.println("numero cedula  buscado"+bus);
+        Operar op = new Operar();
+        String resultado_busqueda = "";
         // lista para recibir los objetos estudiantes desde el archivo
         ArrayList listaLeida = new ArrayList<>();
 
         // asignar a la lista los objetos
         listaLeida = OperacionArchivo.leerArchivo();
+       
         for (Estudiante estudiante : (ArrayList<Estudiante>) listaLeida) {
-            System.out.println("estudiante.getDocumentoIdentificacion("+estudiante.getDocumentoIdentificacion());
-            if (bus==estudiante.getDocumentoIdentificacion()) {
-               System.out.println(
-                    estudiante.getTipo_documento() + " , " + estudiante.getDocumentoIdentificacion()
-                    + " , " + estudiante.getGenero()
-                    + " , " + estudiante.getPrimer_nombre()
-                    + " , " + estudiante.getSegundo_nombre()
-                    + " , " + estudiante.getPrimer_apellido()
-                    + " , " + estudiante.getSegundo_apellido()
-                    + " , " + estudiante.getNota1()
-                    + " , " + estudiante.getNota2()
-                    + " , " + estudiante.getNota3()+"/n"); 
-            }else{
-                System.out.println("no encontrado");
+            resultado_busqueda= estudiante.getDocumentoIdentificacion();
+            System.out.println("Documento Identificacion: " + estudiante.getDocumentoIdentificacion());
+            if (Integer.parseInt(bus)==Integer.parseInt(resultado_busqueda) ) {
+                resultado_busqueda = ("no encontrado\n");
+            } else {
+                System.out.println("Entro   entro");                String promedio = "";
+                try {
+                    promedio = "" + op.PromedioEstudiante(Integer.parseInt(estudiante.getNota1()), Integer.parseInt(estudiante.getNota2()), Integer.parseInt(estudiante.getNota3()));
+                } catch (IOException ex) {
+                    Logger.getLogger(Estudiante.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                resultado_busqueda = ("\n \n Tipo Documneto " + estudiante.getTipo_documento() + " , documento identificacion" + estudiante.getDocumentoIdentificacion()
+                        + " ,  genero " + estudiante.getGenero()
+                        + " , primer_nombre" + estudiante.getPrimer_nombre()
+                        + " , segundo nombre " + estudiante.getSegundo_nombre()
+                        + " , primer apellido" + estudiante.getPrimer_apellido()
+                        + " , segundo apellido" + estudiante.getSegundo_apellido()
+                        + " , nota 1" + estudiante.getNota1()
+                        + " , nota 2" + estudiante.getNota2()
+                        + " , nota 3" + estudiante.getNota3()
+                        + " , promedio "
+                        + promedio
+                        + " \n ");
             }
-            
+
         }
+        return resultado_busqueda;
     }
 }

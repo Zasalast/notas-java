@@ -12,3 +12,5 @@
 11111111111,no definido,primer nombre ,segundo nombre,primer apellido, segundo apellido,2,2,2
 11111111111,no definido,primer nombre ,segundo nombre,primer apellido, segundo apellido,2,2,2
 11111111111,no definido,primer nombre ,segundo nombre,primer apellido, segundo apellido,2,2,2
+# identificacion,no definido,primer nombre ,segundo nombre,primer apellido, segundo apellido,1,1,1
+43434343,no definido,zasas,aaaa,ssss,ddd,1,2,3
