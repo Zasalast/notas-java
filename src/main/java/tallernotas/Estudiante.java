@@ -234,9 +234,16 @@ public class Estudiante {
                 resultado_busqueda = ("no encontrado\n");
                 System.out.println("si   entro");
                 String promedio = "";
+                String mensaje_aprobado="";
                 try {
-                    promedio = "" + op.PromedioEstudiante(Integer.parseInt(estudiante.getNota1()), Integer.parseInt(estudiante.getNota2()), Integer.parseInt(estudiante.getNota3()));
-
+                    promedio = "" + op.PromedioEstudiante(Double.parseDouble(estudiante.getNota1()), Double.parseDouble(estudiante.getNota2()), Double.parseDouble(estudiante.getNota3()));
+                    if (Double.parseDouble(promedio)<=5.0 && Double.parseDouble(promedio)>=3.0) {
+                        System.out.println("aprobo");
+                        mensaje_aprobado="aprobo";
+                    } else {
+                        System.out.println("no aprobo");
+                        mensaje_aprobado="no aprobo";
+                    }
                     resultado_busqueda = ("\n \n Tipo Documneto: " + estudiante.getTipo_documento() 
                             + " \n  documento identificacion: " + estudiante.getDocumentoIdentificacion()
                             + " \n   genero: " + estudiante.getGenero()
@@ -248,6 +255,7 @@ public class Estudiante {
                             + " \n  nota 2: " + estudiante.getNota2()
                             + " \n  nota 3: " + estudiante.getNota3()
                             + " \n  promedio: " + promedio
+                            + " \n  promedio: "+mensaje_aprobado
                             + " \n ");
                     return resultado_busqueda;
 

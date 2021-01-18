@@ -474,9 +474,9 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
             } catch (Exception e5) {
                 try {
                     String mens = "" + e5.getMessage();
-                    
+
                     nombrearchivo = "ErrorLog" + "";
-                    
+
                     guardar_log.crear_archivo_plano(nombrearchivo, mens);
                 } catch (IOException ex) {
                     java.util.logging.Logger.getLogger(FormularioEstudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -509,9 +509,9 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
             } catch (Exception e7) {
                 try {
                     String mens = "" + e7.getMessage();
-                    
+
                     nombrearchivo = "ErrorLog" + "";
-                    
+
                     guardar_log.crear_archivo_plano(nombrearchivo, mens);
                 } catch (IOException ex) {
                     java.util.logging.Logger.getLogger(FormularioEstudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -541,20 +541,18 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
             } catch (Exception e8) {
                 try {
                     String mens = "" + e8.getMessage();
-                    
+
                     nombrearchivo = "ErrorLog" + "";
-                    
+
                     guardar_log.crear_archivo_plano(nombrearchivo, mens);
                 } catch (IOException ex) {
                     java.util.logging.Logger.getLogger(FormularioEstudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                 }
             }
 
-    
-
-           estudiante1.CrearGuardarArchivoEstudiante("Cedula",numero_identificacion_JTextField.getText(),"genero",primer_nombre_JTextField.getText(),segundo_nombre_JTextField.getText(),primer_apellido_JTextField.getText(),segundo_apellido_JTextField.getText(),""+nota1,""+nota2,""+nota3,"\"estudiantes4\"");
+            estudiante1.CrearGuardarArchivoEstudiante("Cedula", numero_identificacion_JTextField.getText(), "genero", primer_nombre_JTextField.getText(), segundo_nombre_JTextField.getText(), primer_apellido_JTextField.getText(), segundo_apellido_JTextField.getText(), "" + nota1, "" + nota2, "" + nota3, "\"estudiantes4\"");
             try {
-                estudiante1.AgregarNuevosEstudiantes(estudiante1.getTipo_documento(), estudiante1.getDocumentoIdentificacion(), estudiante1.getGenero(), estudiante1.getPrimer_nombre(), estudiante1.getSegundo_nombre(), estudiante1.getPrimer_apellido(), estudiante1.getSegundo_apellido(), estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3(),"estudiantes4");
+                estudiante1.AgregarNuevosEstudiantes(estudiante1.getTipo_documento(), estudiante1.getDocumentoIdentificacion(), estudiante1.getGenero(), estudiante1.getPrimer_nombre(), estudiante1.getSegundo_nombre(), estudiante1.getPrimer_apellido(), estudiante1.getSegundo_apellido(), estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3(), "estudiantes4");
                 informe_JTextArea.setText(informe_JTextArea.getText() + "\n \n"
                         + estudiante1.getTipo_documento() + " , " + estudiante1.getDocumentoIdentificacion() + " , "
                         + estudiante1.getGenero() + " , " + estudiante1.getPrimer_nombre() + " , "
@@ -564,9 +562,9 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
             } catch (Exception e9) {
                 try {
                     String mens = "" + e9.getMessage();
-                    
+
                     nombrearchivo = "ErrorLog" + "";
-                    
+
                     guardar_log.crear_archivo_plano(nombrearchivo, mens);
                 } catch (IOException ex) {
                     java.util.logging.Logger.getLogger(FormularioEstudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
