@@ -409,7 +409,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
             estudiante1.setSegundo_nombre(segundo_nombre_JTextField.getText());
             estudiante1.setPrimer_apellido(primer_apellido_JTextField.getText());
             estudiante1.setSegundo_apellido(segundo_apellido_JTextField.getText());
-//            try {
+            try {
                 if (Double.parseDouble(Nota1_JTextField.getText()) >= 0 && Double.parseDouble(Nota1_JTextField.getText()) <= 5) {
 
                     estudiante1.setNota1(Nota1_JTextField.getText());
@@ -426,19 +426,19 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
                     nota1 = 0;
                     estudiante1.setNota1("0");
                 }
-//            } catch (Exception e) {
-//
-//                try {
-//                    String mens = "" + e.getMessage();
-//
-//                    nombrearchivo = "ErrorLog" + "";
-//
-//                    guardar_log.crear_archivo_plano(nombrearchivo, mens);
-//                } catch (IOException ex) {
-//                    java.util.logging.Logger.getLogger(FormularioEstudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//                }
-//
-//            }
+            } catch (Exception e4) {
+
+                try {
+                    String mens = "" + e4.getMessage();
+
+                    nombrearchivo = "ErrorLog" + "";
+
+                    guardar_log.crear_archivo_plano(nombrearchivo, mens);
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(FormularioEstudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+
+            }
 
             if (Double.parseDouble(Nota2_JTextField.getText()) >= 0 && Double.parseDouble(Nota2_JTextField.getText()) <= 5) {
                 Nota2_JLabel_color.setBackground(Color.GREEN);
@@ -455,7 +455,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
                 estudiante1.setNota2("0");
             }
 
-//            try {
+            try {
                 if (Double.parseDouble(Nota3_JTextField.getText()) >= 0 || Double.parseDouble(Nota3_JTextField.getText()) <= 5) {
                     Nota3_JLabel_color.setBackground(Color.GREEN);
                     estudiante1.setNota3(Nota3_JTextField.getText());
@@ -471,15 +471,19 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
                     Nota3_JLabel_color.setVisible(true);
                     estudiante1.setNota3("0");
                 }
-//            } catch (Exception e) {
-//                String mens = "" + e.getMessage();
-//
-//                nombrearchivo = "ErrorLog" + "";
-//
-//                guardar_log.crear_archivo_plano(nombrearchivo, mens);
-//            }
-//
-//            try {
+            } catch (Exception e5) {
+                try {
+                    String mens = "" + e5.getMessage();
+                    
+                    nombrearchivo = "ErrorLog" + "";
+                    
+                    guardar_log.crear_archivo_plano(nombrearchivo, mens);
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(FormularioEstudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+            }
+
+            try {
                 if (cedula_ciudadania.isSelected() == true || tarjeta_identidad.isSelected() || cedula_extranjeria.isSelected()) {
                     if (cedula_ciudadania.isSelected()) {
                         System.out.println("ciudadanía");
@@ -502,15 +506,19 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
                     System.out.println(tarjeta_identidad.isSelected());
                     System.out.println(cedula_extranjeria.isSelected());
                 }
-//            } catch (Exception e) {
-//                String mens = "" + e.getMessage();
-//
-//                nombrearchivo = "ErrorLog" + "";
-//
-//                guardar_log.crear_archivo_plano(nombrearchivo, mens);
-//            }
-//
-//            try {
+            } catch (Exception e7) {
+                try {
+                    String mens = "" + e7.getMessage();
+                    
+                    nombrearchivo = "ErrorLog" + "";
+                    
+                    guardar_log.crear_archivo_plano(nombrearchivo, mens);
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(FormularioEstudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+            }
+
+            try {
                 if (masculino.isSelected() || femenido.isSelected() || Otro.isSelected()) {
                     if (masculino.isSelected()) {
                         System.out.println("masculino");
@@ -530,34 +538,22 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
                     estudiante1.setGenero("No definido");
                     System.out.println("no se seleccion genero");
                 }
-//            } catch (Exception e) {
-//                String mens = "" + e.getMessage();
-//
-//                nombrearchivo = "ErrorLog" + "";
-//
-//                guardar_log.crear_archivo_plano(nombrearchivo, mens);
-//            }
+            } catch (Exception e8) {
+                try {
+                    String mens = "" + e8.getMessage();
+                    
+                    nombrearchivo = "ErrorLog" + "";
+                    
+                    guardar_log.crear_archivo_plano(nombrearchivo, mens);
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(FormularioEstudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+            }
 
-//            try {
-//                setInforme_estudiante( ""+PromedioEstudiante(nota1, nota2, nota3));
-//            } catch (IOException ex) {
-//                String mens = "" + ex;
-//
-//                nombrearchivo = "ErrorLog" + "";
-//
-////////////                try {
-////////////                    guardar_log.crear_archivo_plano(nombrearchivo, mens);
-////////////                } catch (IOException ex1) {
-////////////                    Logger.getLogger(Form.class.getName()).log(Level.SEVERE, null, ex1);
-////////////                }
-//            }
-//           if (file.exists()) {
-//
-//        }else{
-//
-//           }
+    
+
            estudiante1.CrearGuardarArchivoEstudiante("Cedula",numero_identificacion_JTextField.getText(),"genero",primer_nombre_JTextField.getText(),segundo_nombre_JTextField.getText(),primer_apellido_JTextField.getText(),segundo_apellido_JTextField.getText(),""+nota1,""+nota2,""+nota3,"\"estudiantes4\"");
-//            try {
+            try {
                 estudiante1.AgregarNuevosEstudiantes(estudiante1.getTipo_documento(), estudiante1.getDocumentoIdentificacion(), estudiante1.getGenero(), estudiante1.getPrimer_nombre(), estudiante1.getSegundo_nombre(), estudiante1.getPrimer_apellido(), estudiante1.getSegundo_apellido(), estudiante1.getNota1(), estudiante1.getNota2(), estudiante1.getNota3(),"estudiantes4");
                 informe_JTextArea.setText(informe_JTextArea.getText() + "\n \n"
                         + estudiante1.getTipo_documento() + " , " + estudiante1.getDocumentoIdentificacion() + " , "
@@ -565,13 +561,17 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
                         + estudiante1.getSegundo_nombre() + " , " + estudiante1.getPrimer_apellido() + " , "
                         + estudiante1.getSegundo_apellido() + " , " + estudiante1.getNota1() + " , " + estudiante1.getNota2() + " , "
                         + estudiante1.getNota3());
-//            } catch (Exception e) {
-//                String mens = "" + e;
-//
-//                nombrearchivo = "ErrorLog" + "";
-//
-//                guardar_log.crear_archivo_plano(nombrearchivo, mens);
-//            }
+            } catch (Exception e9) {
+                try {
+                    String mens = "" + e9.getMessage();
+                    
+                    nombrearchivo = "ErrorLog" + "";
+                    
+                    guardar_log.crear_archivo_plano(nombrearchivo, mens);
+                } catch (IOException ex) {
+                    java.util.logging.Logger.getLogger(FormularioEstudiantes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+            }
 
         } else if (e.getSource() == btn_reset) {
 

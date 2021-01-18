@@ -8,30 +8,84 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class OperacionArchivo {
 
     public static String crear_archivo_plano(String name, String content) throws IOException {
         String ruta = "C:/Users/ZASALAS/Documents/NetBeansProjects/JavaApplication9/src/javaapplication9/src/main/java/tallernotas/";
         name += ".txt";
-        File archivo = null;
-        FileWriter fw;
-        boolean archivo_exists = archivo.exists();
+        
+      
+         FileWriter flwriter = null;
         try {
-            if (archivo_exists) {
+            //crea el flujo para escribir en el archivo
+            flwriter = new FileWriter(ruta+name);
+            //crea un buffer o flujo intermedio antes de escribir directamente en el archivo
+            BufferedWriter bfwriter = new BufferedWriter(flwriter);
+          
+                //escribe los datos en el archivo
+                bfwriter.write( content);
+            
+            //cierra el buffer intermedio
+            bfwriter.close();
+            System.out.println("Archivo creado satisfactoriamente..");
 
-            } else {
-            }
-            archivo = new File(ruta + name);
-            fw = new FileWriter(archivo);
-            BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter salida = new PrintWriter(bw);
-            salida.write(content);
-            salida.close();
-            bw.close();
         } catch (IOException e) {
-            return "Error: " + e.getMessage() + "\n";
+            
+            e.printStackTrace();
+             try {//además de la ruta del archivo recibe un parámetro de tipo boolean, que le indican que se va añadir más registros 
+            flwriter = new FileWriter(ruta + name
+//                    "C:/Users/ZASALAS/Documents/NetBeansProjects/JavaApplication9/src/javaapplication9/src/main/java/tallernotas/estudiantes4.txt"
+            , true);
+            BufferedWriter bfwriter = new BufferedWriter(flwriter);
+            //escribe los datos en el archivo
+                bfwriter.write(content);
+            
+            bfwriter.close();
+            System.out.println("Archivo modificado satisfactoriamente..");
+
+        } catch (IOException e2) {
+            e2.printStackTrace();
+        } finally {
+            if (flwriter != null) {
+                try {
+                    flwriter.close();
+                } catch (IOException e3) {
+                    e3.printStackTrace();
+                }
+            }
         }
+        } finally {
+            if (flwriter != null) {
+                try {//cierra el flujo principal
+                    flwriter.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        
+        
+//        File archivo = null;
+//        FileWriter fw;
+//        boolean archivo_exists = archivo.exists();
+//        try {
+//            if (archivo_exists) {
+//
+//            } else {
+//            }
+//            archivo = new File(ruta + name);
+//            fw = new FileWriter(archivo);
+//            BufferedWriter bw = new BufferedWriter(fw);
+//            PrintWriter salida = new PrintWriter(bw);
+//            salida.write(content);
+//            salida.close();
+//            bw.close();
+//        } catch (IOException e) {
+//            return "Error: " + e.getMessage() + "\n";
+//        }
         return "ARCHIVO CREADO CON EXITO...\n";
     }
 
@@ -58,7 +112,23 @@ name += ".txt";
             System.out.println("Archivo creado satisfactoriamente..");
 
         } catch (IOException e) {
-            e.printStackTrace();
+    try {
+        e.printStackTrace();
+        
+        //además de la ruta del archivo recibe un parámetro de tipo boolean, que le indican que se va añadir más registros
+        flwriter = new FileWriter(ruta + name
+   , true);
+        BufferedWriter bfwriter = new BufferedWriter(flwriter);
+        for (Estudiante estudiante : (ArrayList<Estudiante>) lista) {
+            //escribe los datos en el archivo
+            bfwriter.write(estudiante.getDocumentoIdentificacion() + "," + estudiante.getTipo_documento() + "," + estudiante.getPrimer_nombre() + "," + estudiante.getSegundo_nombre()
+                    + "," + estudiante.getPrimer_apellido() + "," + estudiante.getSegundo_apellido() + "," + estudiante.getNota1() + "," + estudiante.getNota2() + "," + estudiante.getNota3() + "\n");
+        }
+        bfwriter.close();
+        System.out.println("Archivo modificado satisfactoriamente..");
+    } catch (IOException ex) {
+        Logger.getLogger(OperacionArchivo.class.getName()).log(Level.SEVERE, null, ex);
+    }
         } finally {
             if (flwriter != null) {
                 try {//cierra el flujo principal
