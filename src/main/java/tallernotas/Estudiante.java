@@ -129,7 +129,8 @@ public class Estudiante {
             String Segundo_apellido,
             String Nota1,
             String Nota2,
-            String Nota3
+            String Nota3,
+            String archivo
     ) {
 
         //      estructura Array List para guardar los objetos estudiantes
@@ -152,7 +153,7 @@ public class Estudiante {
         listaEstudiantes.add(estudiante1);
 
         // crea el archivo estudiantes
-        OperacionArchivo.crearArchivo(listaEstudiantes,"estudiantes4.txt");
+        OperacionArchivo.crearArchivo(listaEstudiantes,archivo);
     }
 
     void AgregarNuevosEstudiantes(
@@ -166,7 +167,7 @@ public class Estudiante {
             String Nota1,
             String Nota2,
             String Nota3
-    ) {
+    ,String archivo) {
         ArrayList listaEstudiantes = new ArrayList<>();
 
         // estudiante 1
@@ -186,17 +187,17 @@ public class Estudiante {
         listaEstudiantes.add(estudiante1);
 
         //añade un estudiante más al archivo
-        OperacionArchivo.aniadirArchivo(listaEstudiantes,"estudiantes4.txt");
+        OperacionArchivo.aniadirArchivo(listaEstudiantes,archivo);
     }
 
-    String VerEstudiantes() {
+    String VerEstudiantes(String archivo) {
 //    void VerEstudiantes() {
         String mostrar = "";
         // lista para recibir los objetos estudiantes desde el archivo
         ArrayList listaLeida = new ArrayList<>();
 
         // asignar a la lista los objetos
-        listaLeida    = OperacionArchivo.leerArchivo("estudiantes4.txt");
+        listaLeida    = OperacionArchivo.leerArchivo(archivo);
         for (Estudiante estudiante : (ArrayList<Estudiante>) listaLeida) {
 
             mostrar = mostrar + ("\n \n Tipo Documneto: " + estudiante.getTipo_documento() 
@@ -215,7 +216,7 @@ public class Estudiante {
         return mostrar;
     }
 
-    String BuscarEstudiantes(String bus) {
+    String BuscarEstudiantes(String bus,String archivo) {
               System.out.println("############   Buscar  #############");
         System.out.println("Numero cedula: " + bus);
         Operar op = new Operar();
@@ -224,7 +225,7 @@ public class Estudiante {
         ArrayList listaLeida = new ArrayList<>();
 
         // asignar a la lista los objetos
-        listaLeida = OperacionArchivo.leerArchivo("estudiantes4.txt");
+        listaLeida = OperacionArchivo.leerArchivo(archivo);
 
         for (Estudiante estudiante : (ArrayList<Estudiante>) listaLeida) {
             resultado_busqueda = estudiante.getDocumentoIdentificacion();

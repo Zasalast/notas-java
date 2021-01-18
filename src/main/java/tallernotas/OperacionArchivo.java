@@ -44,7 +44,7 @@ name += ".txt";
         try {
             //crea el flujo para escribir en el archivo
 //            flwriter = new FileWriter("/Users/DesarrolloColectivo/NetBeansProjects/tallernotas/src/main/java/tallernotas/estudiantes4.txt");
-            flwriter = new FileWriter("C:/Users/ZASALAS/Documents/NetBeansProjects/JavaApplication9/src/javaapplication9/src/main/java/tallernotas/estudiantes4.txt");
+            flwriter = new FileWriter(ruta + name);
 
 //crea un buffer o flujo intermedio antes de escribir directamente en el archivo
             BufferedWriter bfwriter = new BufferedWriter(flwriter);
@@ -107,7 +107,7 @@ name += ".txt";
         name += ".txt";
          String ruta = "C:/Users/ZASALAS/Documents/NetBeansProjects/JavaApplication9/src/javaapplication9/src/main/java/tallernotas/";
         // crea el flujo para leer desde el archivo
-        File file = new File("C:/Users/ZASALAS/Documents/NetBeansProjects/JavaApplication9/src/javaapplication9/src/main/java/tallernotas/estudiantes4.txt");
+        File file = new File(ruta + name);
         ArrayList listaEstudiantes = new ArrayList<>();
         Scanner scanner;
         try {
