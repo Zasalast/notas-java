@@ -136,7 +136,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
         jp_center_panel.setLayout(new BorderLayout(5, 5));
         jp_center_panel.setBackground(Color.red);
 
-        jp_center_panel.setBounds(x, y, alt, ancho);
+//        jp_center_panel.setBounds(x, y, alt, ancho);
         jp_center_panel.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
         this.add(jp_center_panel);
     }
@@ -146,7 +146,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
         jp_center_notas.setLayout(new GridLayout(2, 2));
         jp_center_notas.setBackground(Color.PINK);
 
-        jp_center_notas.setBounds(x, y, alt, ancho);
+//        jp_center_notas.setBounds(x, y, alt, ancho);
         jp_center_notas.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
 
     }
@@ -156,7 +156,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
         NombreEstudiantePanelFlowLayout(0, 0, 200, 200);
         jpMenu = new JPanel();
         jpMenu.setLayout(new BorderLayout());
-        jpMenu.setBounds(x, y, alt, ancho);
+//        jpMenu.setBounds(x, y, alt, ancho);
         jpMenu.setBackground(Color.black);
         jpMenu.setBorder(BorderFactory.createLineBorder(Color.black));
         jpMenu.add(jp_documento, BorderLayout.NORTH);
@@ -168,7 +168,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
         jp_documento = new JPanel();
 
         jp_documento.setLayout(new GridLayout(8, 0, 10, 10));
-        jp_documento.setBounds(x, y, alt, ancho);
+//        jp_documento.setBounds(x, y, alt, ancho);
         jp_documento.setBackground(Color.PINK);
         jp_documento.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
         jp_documento.add(Informacion_personal_lbl);
@@ -188,7 +188,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
 
         jp_nombre_estudiante = new JPanel();
         jp_nombre_estudiante.setLayout(new GridLayout(5, 0, 0, 0));
-        jp_nombre_estudiante.setBounds(x, y, alt, ancho);
+//        jp_nombre_estudiante.setBounds(x, y, alt, ancho);
         jp_nombre_estudiante.setBackground(Color.PINK);
         jp_nombre_estudiante.setBorder(BorderFactory.createLineBorder(Color.black));
 
@@ -202,7 +202,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
 
         jp_informe_notas = new JPanel();
         jp_informe_notas.setLayout(new GridLayout(3, 2, 0, 0));
-        jp_informe_notas.setBounds(x, y, alt, ancho);
+//        jp_informe_notas.setBounds(x, y, alt, ancho);
         jp_informe_notas.setBackground(Color.PINK);
         jp_informe_notas.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
 
@@ -216,7 +216,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
 
         jp_cantidad = new JPanel();
         jp_cantidad.setLayout(new GridLayout(2, 2, 0, 0));
-        jp_cantidad.setBounds(x, y, alt, ancho);
+//        jp_cantidad.setBounds(x, y, alt, ancho);
         jp_cantidad.setBackground(Color.WHITE);
         jp_cantidad.setBorder(BorderFactory.createLineBorder(Color.black));
         jp_cantidad.add(btn_buscar);
@@ -228,7 +228,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
 
         jp_controles = new JPanel();
         jp_controles.setLayout(new FlowLayout(FlowLayout.CENTER, 3, 1));
-        jp_controles.setBounds(x, y, alt, ancho);
+//        jp_controles.setBounds(x, y, alt, ancho);
         jp_controles.setBackground(Color.pink);
         jp_controles.setBorder(BorderFactory.createLineBorder(Color.black));
         jp_center_panel.add(jp_cantidad, BorderLayout.PAGE_START);
@@ -247,7 +247,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
         informe_estudiante_JTextArea.setLineWrap(true);
 
         informe_estudiante_JTextArea.setEditable(false);
-        informe_estudiante_JTextArea.setBounds(10, 5, 100, 100);
+//        informe_estudiante_JTextArea.setBounds(10, 5, 100, 100);
         pane_estudiante = new JScrollPane(informe_JTextArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         informe_JTextArea = new JTextArea();
@@ -255,7 +255,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
         informe_JTextArea.setLineWrap(true);
 
         informe_JTextArea.setEditable(false);
-        informe_JTextArea.setBounds(10, 5, 100, 100);
+//        informe_JTextArea.setBounds(10, 5, 100, 100);
         pane = new JScrollPane(informe_JTextArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     }
 
@@ -471,7 +471,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
                     Nota3_JLabel_color.setVisible(true);
                     estudiante1.setNota3("0");
                 }
-            } catch (Exception e5) {
+            } catch (NumberFormatException e5) {
                 try {
                     String mens = "" + e5.getMessage();
 
