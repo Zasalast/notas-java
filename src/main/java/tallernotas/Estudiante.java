@@ -1,4 +1,4 @@
-package tallernotas;
+package javaapplication9.src.main.java.tallernotas;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -152,7 +152,7 @@ public class Estudiante {
         listaEstudiantes.add(estudiante1);
 
         // crea el archivo estudiantes
-        OperacionArchivo.crearArchivo(listaEstudiantes);
+        OperacionArchivo.crearArchivo(listaEstudiantes,"estudiantes4.txt");
     }
 
     void AgregarNuevosEstudiantes(
@@ -186,7 +186,7 @@ public class Estudiante {
         listaEstudiantes.add(estudiante1);
 
         //añade un estudiante más al archivo
-        OperacionArchivo.aniadirArchivo(listaEstudiantes);
+        OperacionArchivo.aniadirArchivo(listaEstudiantes,"estudiantes4.txt");
     }
 
     String VerEstudiantes() {
@@ -196,7 +196,7 @@ public class Estudiante {
         ArrayList listaLeida = new ArrayList<>();
 
         // asignar a la lista los objetos
-        listaLeida = OperacionArchivo.leerArchivo();
+        listaLeida    = OperacionArchivo.leerArchivo("estudiantes4.txt");
         for (Estudiante estudiante : (ArrayList<Estudiante>) listaLeida) {
 
             mostrar = mostrar + ("\n \n Tipo Documneto: " + estudiante.getTipo_documento() 
@@ -224,7 +224,7 @@ public class Estudiante {
         ArrayList listaLeida = new ArrayList<>();
 
         // asignar a la lista los objetos
-        listaLeida = OperacionArchivo.leerArchivo();
+        listaLeida = OperacionArchivo.leerArchivo("estudiantes4.txt");
 
         for (Estudiante estudiante : (ArrayList<Estudiante>) listaLeida) {
             resultado_busqueda = estudiante.getDocumentoIdentificacion();

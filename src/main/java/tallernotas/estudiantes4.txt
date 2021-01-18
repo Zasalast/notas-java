@@ -2,3 +2,4 @@
 1235,cedula de extranjeria,zanoni,,ortiz,tobon,3,4,3
 1235,cedula de ciudadanía,claudio,,ortiz,tobon,5,4,3
 1235,cedula de ciudadanía,tatiana,,ortiz,gomez,5,0,3
+1117519,cedula de ciudadanía,zanoni ,a,salas ,t,2,1,1

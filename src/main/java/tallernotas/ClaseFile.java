@@ -1,4 +1,4 @@
-package tallernotas;
+package javaapplication9.src.main.java.tallernotas;
 import java.io.File;
 import java.util.ArrayList;
 public class ClaseFile {
