@@ -261,29 +261,50 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
 
     void JTextFieldComponents() {
         numero_identificacion_JTextField = new JTextField();
-        numero_identificacion_JTextField.setText("# identificacion");
+        numero_identificacion_JTextField.setText("");
         numero_identificacion_JTextField.setEditable(true);
         numero_identificacion_JTextField.addMouseListener(this);
 
         primer_nombre_JTextField = new JTextField();
-        primer_nombre_JTextField.setText("primer nombre ");
+        primer_nombre_JTextField.setText("");
         primer_nombre_JTextField.setEditable(true);
         primer_nombre_JTextField.addMouseListener(this);
 
         segundo_nombre_JTextField = new JTextField();
-        segundo_nombre_JTextField.setText("segundo nombre");
+        segundo_nombre_JTextField.setText("");
         segundo_nombre_JTextField.setEditable(true);
         segundo_nombre_JTextField.addMouseListener(this);
 
         primer_apellido_JTextField = new JTextField();
-        primer_apellido_JTextField.setText("primer apellido");
+        primer_apellido_JTextField.setText("");
         primer_apellido_JTextField.setEditable(true);
         primer_apellido_JTextField.addMouseListener(this);
 
         segundo_apellido_JTextField = new JTextField();
-        segundo_apellido_JTextField.setText(" segundo apellido");
+        segundo_apellido_JTextField.setText("");
         segundo_apellido_JTextField.setEditable(true);
         segundo_apellido_JTextField.addMouseListener(this);
+        
+        
+         Nota1_JTextField = new JTextField();
+        Nota1_JTextField.setText("");
+        Nota1_JTextField.setEditable(true);
+        Nota1_JTextField.addMouseListener(this);
+
+        Nota2_JTextField = new JTextField();
+        Nota2_JTextField.setText("");
+        Nota2_JTextField.setEditable(true);
+        Nota2_JTextField.addMouseListener(this);
+
+        Nota3_JTextField = new JTextField();
+        Nota3_JTextField.setText("");
+        Nota3_JTextField.setEditable(true);
+        Nota3_JTextField.addMouseListener(this);
+
+        buscar_txf = new JTextField();
+        buscar_txf.setText("");
+        buscar_txf.setEditable(true);
+        buscar_txf.addMouseListener(this);
 
     }
 
@@ -337,25 +358,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
         bg_genero.add(femenido);
         bg_genero.add(Otro);
 
-        Nota1_JTextField = new JTextField();
-        Nota1_JTextField.setText("nota 1");
-        Nota1_JTextField.setEditable(true);
-        Nota1_JTextField.addMouseListener(this);
-
-        Nota2_JTextField = new JTextField();
-        Nota2_JTextField.setText("nota2");
-        Nota2_JTextField.setEditable(true);
-        Nota2_JTextField.addMouseListener(this);
-
-        Nota3_JTextField = new JTextField();
-        Nota3_JTextField.setText("nota 3");
-        Nota3_JTextField.setEditable(true);
-        Nota3_JTextField.addMouseListener(this);
-
-        buscar_txf = new JTextField();
-        buscar_txf.setText("Buscar");
-        buscar_txf.setEditable(true);
-        buscar_txf.addMouseListener(this);
+       
 
     }
 
@@ -404,7 +407,16 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
         Estudiante estudiante1 = new Estudiante();
         System.out.println(e.getSource() == cedula_ciudadania);
         if (e.getSource() == btn_registrar) {
-            estudiante1.setDocumentoIdentificacion(numero_identificacion_JTextField.getText());
+            if (Double.parseDouble(numero_identificacion_JTextField.getText()) >= 1000 && Double.parseDouble(numero_identificacion_JTextField.getText()) <= 999999999) {
+                if (numero_identificacion_JTextField.getText().trim().isEmpty()&& numero_identificacion_JTextField.getText().trim().length()>=3
+                        &&primer_nombre_JTextField.getText().trim().isEmpty()&& primer_nombre_JTextField.getText().trim().length()>=3
+                        &&primer_apellido_JTextField.getText().trim().isEmpty()&& primer_apellido_JTextField.getText().trim().length()>=3
+                        && Double.parseDouble(Nota1_JTextField.getText()) >= 0 && Double.parseDouble(Nota1_JTextField.getText()) <= 5
+                        && Double.parseDouble(Nota2_JTextField.getText()) >= 0 && Double.parseDouble(Nota2_JTextField.getText()) <= 5
+                        && Double.parseDouble(Nota3_JTextField.getText()) >= 0 && Double.parseDouble(Nota3_JTextField.getText()) <= 5
+                      
+                        ) {
+                        estudiante1.setDocumentoIdentificacion(numero_identificacion_JTextField.getText());
             estudiante1.setPrimer_nombre(primer_nombre_JTextField.getText());
             estudiante1.setSegundo_nombre(segundo_nombre_JTextField.getText());
             estudiante1.setPrimer_apellido(primer_apellido_JTextField.getText());
@@ -571,6 +583,8 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
                 }
             }
 
+                }
+            }
         } else if (e.getSource() == btn_reset) {
 
             informe_JTextArea.setText("");
@@ -596,10 +610,11 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
         } else if (e.getSource() == btn_salir) {
             System.exit(0);
         } else if (e.getSource() == btn_buscar) {
-
-//             informe_JTextArea.setText("####"  +informe_JTextArea.getText() + estudiante1.BuscarEstudiantes(buscar_txf.getText())+"  #### \n");
-            informe_JTextArea.setText("\n " + estudiante1.BuscarEstudiantes(buscar_txf.getText(), "estudiantes4") + "  \n ");
-        } else if (e.getSource() == btn_ver_estudiantes) {
+            if (Integer.parseInt(buscar_txf.getText()) >= 1000 ) {
+                 informe_JTextArea.setText("\n " + estudiante1.BuscarEstudiantes(buscar_txf.getText(), "estudiantes4") + "  \n ");
+      
+            }
+      } else if (e.getSource() == btn_ver_estudiantes) {
 
             informe_JTextArea.setText("\n " + informe_JTextArea.getText() + estudiante1.VerEstudiantes("estudiantes4") + "  \n ");
             System.out.println(
