@@ -17,33 +17,33 @@ import javax.swing.JTextField;
  */
 public class TecladoMetodos {
 
-    public void metodoLetras(JTextField jtx) {
-        jtx.addKeyListener(new keyAdapter() {
-            public void keyTyped(KeyEvent evts) {
-                char teclas;
-                teclas = evts.getKeyChar();
-                if (!Character.isLetter(teclas) && teclas != KeyEvent.VK_SPACE && teclas != KeyEvent.VK_BACK_SPACE) {
-                    evts.consume();
-//                    getToolkit().beep();
-                }
-            }
-        });
-        System.out.println("keyTyped");
-
-    }
-
-    void metodosNumeros(JTextField jtx) {
-                 jtx.addKeyListener(new keyAdapter(){
-             public void keyTyped(KeyEvent  evt){
-             char tecl;
-        char tecl;
-        tecl = evt.getKeyChar();
-        if (!Character.isDigit(tecl) && tecl != KeyEvent.VK_BACK_SPACE) {
-            evt.consume();
-//            getToolkit().beep();
-        }
-    }
-                 });
-                         }
+//    public void metodoLetras(JTextField jtx) {
+//        jtx.addKeyListener(new keyAdapter() {
+//            public void keyTyped(KeyEvent evts) {
+//                char teclas;
+//                teclas = evts.getKeyChar();
+//                if (!Character.isLetter(teclas) && teclas != KeyEvent.VK_SPACE && teclas != KeyEvent.VK_BACK_SPACE) {
+//                    evts.consume();
+//                    // getToolkit().beep();
+//                }
+//            }
+//        });
+//        System.out.println("keyTyped");
+//
+//    }
+//
+//    void metodosNumeros(JTextField jtx) {
+//        jtx.addKeyListener(new keyAdapter() {
+//            public void keyTyped(KeyEvent evt) {
+//                char tecl;
+//                char tecl;
+//                tecl = evt.getKeyChar();
+//                if (Character.isLetter(tecl) && tecl != KeyEvent.VK_BACK_SPACE) {
+//                    evt.consume();
+//                    // getToolkit().beep();
+//                }
+//            }
+//        });
+//    }
 
 }

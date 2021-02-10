@@ -23,6 +23,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,8 +34,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.MaskFormatter;
 
-public class FormularioEstudiantes extends JFrame implements ActionListener, MouseListener,KeyListener {
+public class FormularioEstudiantes extends JFrame implements ActionListener, MouseListener, KeyListener {
 
     private String informe_estudiante = "";
 
@@ -51,7 +53,7 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
     private OperacionArchivo guardar_log;
     private JLabel Nota1_JLabel_color, Nota2_JLabel_color, Nota3_JLabel_color, Nota, Informacion_personal_lbl, informe_JLabel, ingrese_notas;
     private JButton btn_salir, btn_buscar, btn_reset, btn_clear, btn_registrar, btn_ver_estudiantes;
-    private JTextField buscar_txf, numero_identificacion_JTextField, primer_nombre_JTextField, segundo_nombre_JTextField, primer_apellido_JTextField, segundo_apellido_JTextField, Nota1_JTextField, Nota2_JTextField, Nota3_JTextField;
+//    private JTextField   /*primer_nombre_JTextField,*/ ;
     private JTextArea informe_estudiante_JTextArea, informe_JTextArea;
     JRadioButton cedula_ciudadania, tarjeta_identidad, cedula_extranjeria, masculino, femenido, Otro;
     Random random = new Random();
@@ -59,7 +61,10 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
     JSpinner spinner;
 //    JList tipo_documento_JList, genero_JList;
 
-    JPanel jpMenu, jp_center_notas, jp_nombre_estudiante, jp_documento, jp_informe_notas, jp_cantidad, jp_iingreso_notas, jp_center_panel, jp6, jp_controles;
+    private JPanel jpMenu, jp_center_notas, jp_nombre_estudiante, jp_documento, jp_informe_notas, jp_cantidad, jp_iingreso_notas, jp_center_panel, jp6, jp_controles;
+    private JFormattedTextField jtf1, jtf2, numero_identificacion_JTextField, primer_nombre_JTextField, segundo_nombre_JTextField, primer_apellido_JTextField, segundo_apellido_JTextField, Nota1_JTextField, Nota2_JTextField, Nota3_JTextField, buscar_txf;
+    private MaskFormatter jf1, jf2, jf3, jf4;
+
     private double nota1, nota2, nota3, promedio;
 
     public double getNota1() {
@@ -166,29 +171,30 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
 //        jpMenu.setBounds(x, y, alt, ancho);
         jpMenu.setBackground(Color.black);
         jpMenu.setBorder(BorderFactory.createLineBorder(Color.black));
-        jpMenu.add(jp_documento, BorderLayout.NORTH);
+        jpMenu.add(jp_documento, BorderLayout.PAGE_START);
         jpMenu.add(jp_nombre_estudiante, BorderLayout.CENTER);
         jp_center_panel.add(jpMenu, BorderLayout.WEST);
     }
 
     public void DocumentoEstudiantesPanelFlowLayout(int x, int y, int alt, int ancho) {
         jp_documento = new JPanel();
-
+        Border bt_jp_documento;
+        bt_jp_documento = BorderFactory.createLineBorder(green, 1);
+        bt_jp_documento = BorderFactory.createTitledBorder(bt_jp_documento, "Información");
         jp_documento.setLayout(new GridLayout(8, 0, 10, 10));
 //        jp_documento.setBounds(x, y, alt, ancho);
         jp_documento.setBackground(Color.PINK);
-        jp_documento.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
-        jp_documento.add(Informacion_personal_lbl);
+        jp_documento.setBorder(bt_jp_documento);
+//        jp_documento.add(Informacion_personal_lbl);
 
+        jp_documento.add(masculino);
+        jp_documento.add(femenido);
+        jp_documento.add(Otro);
         jp_documento.add(cedula_ciudadania);
         jp_documento.add(tarjeta_identidad);
         jp_documento.add(cedula_extranjeria);
 
         jp_documento.add(numero_identificacion_JTextField);
-        jp_documento.add(masculino);
-        jp_documento.add(femenido);
-        jp_documento.add(Otro);
-
     }
 
     public void NombreEstudiantePanelFlowLayout(int x, int y, int alt, int ancho) {
@@ -266,49 +272,104 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
         pane = new JScrollPane(informe_JTextArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     }
 
+    public void formato() {
+        try {
+            jf1 = new MaskFormatter("ULLLLLLLLLLLLL");//primera mayuscula el resto minuscula
+            jf2 = new MaskFormatter("#,##");//nota
+            jf3 = new MaskFormatter("##########");//Cedula
+            jf4 = new MaskFormatter("####/##/##");//Fecha  toca probar esta por que aun no he podido
+
+        } catch (Exception e) {
+            System.out.println("Formato no valido");
+        }
+    }
+
     void JTextFieldComponents() {
-        numero_identificacion_JTextField = new JTextField();
+        formato();
+
+        Border bt_numero_identificacion;
+        bt_numero_identificacion = BorderFactory.createLineBorder(green, 1);
+        bt_numero_identificacion = BorderFactory.createTitledBorder(bt_numero_identificacion, "Número Identificacion");
+        numero_identificacion_JTextField = new JFormattedTextField(jf3);
+        numero_identificacion_JTextField.setBorder(bt_numero_identificacion);
         numero_identificacion_JTextField.setText("");
         numero_identificacion_JTextField.setEditable(true);
         numero_identificacion_JTextField.addMouseListener(this);
 
-        primer_nombre_JTextField = new JTextField();
+//        primer_nombre_JTextField = new JTextField();
+        Border bt_primer_nombre;
+        bt_primer_nombre = BorderFactory.createLineBorder(green, 1);
+        bt_primer_nombre = BorderFactory.createTitledBorder(bt_primer_nombre, "Primer nombre");
+//        bt_primer_nombre = BorderFactory.createTitledBorder("nombre");
+        primer_nombre_JTextField = new JFormattedTextField(jf1);
+        primer_nombre_JTextField.setBorder(bt_primer_nombre);
         primer_nombre_JTextField.setText("");
         primer_nombre_JTextField.setEditable(true);
         primer_nombre_JTextField.addMouseListener(this);
         primer_nombre_JTextField.addKeyListener(this);
 
-        segundo_nombre_JTextField = new JTextField();
+        Border bt_segundo_nombre;
+        bt_segundo_nombre = BorderFactory.createLineBorder(green, 1);
+        bt_segundo_nombre = BorderFactory.createTitledBorder(bt_segundo_nombre, "Segundo nombre");
+//        bt_segundo_nombre = BorderFactory.createTitledBorder("nombre");
+        segundo_nombre_JTextField = new JFormattedTextField(jf1);
+        segundo_nombre_JTextField.setBorder(bt_segundo_nombre);
         segundo_nombre_JTextField.setText("");
         segundo_nombre_JTextField.setEditable(true);
         segundo_nombre_JTextField.addMouseListener(this);
 
-        primer_apellido_JTextField = new JTextField();
+        Border bt_primer_apellido;
+        bt_primer_apellido = BorderFactory.createLineBorder(green, 1);
+        bt_primer_apellido = BorderFactory.createTitledBorder(bt_primer_apellido, "Primer Apellido");
+//        bt_primer_apellido = BorderFactory.createTitledBorder("nombre");
+        primer_apellido_JTextField = new JFormattedTextField(jf1);
+        primer_apellido_JTextField.setBorder(bt_primer_apellido);
         primer_apellido_JTextField.setText("");
         primer_apellido_JTextField.setEditable(true);
         primer_apellido_JTextField.addMouseListener(this);
 
-        segundo_apellido_JTextField = new JTextField();
+        Border bt_segundo_apellido;
+        bt_segundo_apellido = BorderFactory.createLineBorder(green, 1);
+        bt_segundo_apellido = BorderFactory.createTitledBorder(bt_segundo_apellido, "Segundo Apellido");
+//        bt_segundo_apellido = BorderFactory.createTitledBorder("nombre");
+        segundo_apellido_JTextField = new JFormattedTextField(jf1);
+        segundo_apellido_JTextField.setBorder(bt_segundo_apellido);
         segundo_apellido_JTextField.setText("");
         segundo_apellido_JTextField.setEditable(true);
         segundo_apellido_JTextField.addMouseListener(this);
 
-        Nota1_JTextField = new JTextField();
+        Border bt_Nota1;
+        bt_Nota1 = BorderFactory.createLineBorder(green, 1);
+        bt_Nota1 = BorderFactory.createTitledBorder(bt_Nota1, "Nota 1");
+        Nota1_JTextField = new JFormattedTextField(jf2);
+        Nota1_JTextField.setBorder(bt_Nota1);
         Nota1_JTextField.setText("");
         Nota1_JTextField.setEditable(true);
         Nota1_JTextField.addMouseListener(this);
 
-        Nota2_JTextField = new JTextField();
+        Border bt_Nota2;
+        bt_Nota2 = BorderFactory.createLineBorder(green, 1);
+        bt_Nota2 = BorderFactory.createTitledBorder(bt_Nota2, "Nota2");
+        Nota2_JTextField = new JFormattedTextField(jf2);
+        Nota2_JTextField.setBorder(bt_Nota2);
         Nota2_JTextField.setText("");
         Nota2_JTextField.setEditable(true);
         Nota2_JTextField.addMouseListener(this);
 
-        Nota3_JTextField = new JTextField();
+        Border bt_Nota3;
+        bt_Nota3 = BorderFactory.createLineBorder(green, 1);
+        bt_Nota3 = BorderFactory.createTitledBorder(bt_Nota3, "Nota 3");
+        Nota3_JTextField = new JFormattedTextField(jf2);
+        Nota3_JTextField.setBorder(bt_Nota3);
         Nota3_JTextField.setText("");
         Nota3_JTextField.setEditable(true);
         Nota3_JTextField.addMouseListener(this);
 
-        buscar_txf = new JTextField();
+        Border bt_buscar;
+        bt_buscar = BorderFactory.createLineBorder(green, 1);
+        bt_buscar = BorderFactory.createTitledBorder(bt_buscar, "Buscar");
+        buscar_txf = new JFormattedTextField(jf3);
+        buscar_txf.setBorder(bt_buscar);
         buscar_txf.setText("");
         buscar_txf.setEditable(true);
         buscar_txf.addMouseListener(this);
@@ -662,11 +723,12 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
         }
 
     }
-     Validacion validar_contenido = new Validacion();
-     TecladoMetodos validacion_teclas = new TecladoMetodos();
+    Validacion validar_contenido = new Validacion();
+//     TecladoMetodos validacion_teclas = new TecladoMetodos();
+
     private void validacionDatos() {
-        v
-        numero_identificacion_JTextField.setBorder(validar_contenido.validacionLongitudContenido(numero_identificacion_JTextField.getText(),""));
+//        metodoLetras(numero_identificacion_JTextField);
+        numero_identificacion_JTextField.setBorder(validar_contenido.validacionLongitudContenido(numero_identificacion_JTextField.getText(), ""));
 //        primer_nombre_JTextField.setBorder(validar_contenido.validacionLongitudContenido(primer_nombre_JTextField.getText(),"Primer Nombre"));
 //        primer_apellido_JTextField.setBorder(validar_contenido.validacionLongitudContenido(primer_apellido_JTextField.getText(),"Primer Apellido"));
 //        Nota1_JTextField.setBorder(validar_contenido.validacionLongitudContenido(Nota1_JTextField.getText(),"Nota 1")));
@@ -674,8 +736,20 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
 //        Nota3_JTextField.setBorder(validar_contenido.validacionLongitudContenido(Nota3_JTextField.getText(),"Nota 1"));
 
     }
-
-    
+// public void metodoLetras(JTextField jtx) {
+//        jtx.addKeyListener(new keyAdapter() {
+//            public void keyTyped(KeyEvent evts) {
+//                char teclas;
+//                teclas = evts.getKeyChar();
+//                if (!Character.isLetter(teclas) && teclas != KeyEvent.VK_SPACE && teclas != KeyEvent.VK_BACK_SPACE) {
+//                    evts.consume();
+////                    getToolkit().beep();
+//                }
+//            }
+//        });
+//        System.out.println("keyTyped");
+//
+//    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -751,25 +825,93 @@ public class FormularioEstudiantes extends JFrame implements ActionListener, Mou
 
     @Override
     public void keyTyped(KeyEvent evt) {
+////        char tecla;
+////        tecla = evt.getKeyChar();
+////
+////        if (evt.getSource()==primer_nombre_JTextField ) {
+//////            primer_nombre_JTextField.setText(primer_nombre_JTextField.getText().toUpperCase());
+////            if (Character.isDigit(tecla)) {
+////                evt.consume();
+////                getToolkit().beep();
+////            }
+////        }
+        System.out.println("#" + evt.getKeyChar());
+//        if (numero_identificacion_JTextField.getText().matches("[0-9]*")) {
+//
+//            if (Character.isLetter(tecla) && tecla != KeyEvent.VK_BACK_SPACE) {
+//                evt.consume();
+//                getToolkit().beep();
+//            }
+//        }
+//
+//        if (buscar_txf.getText().matches("[0-9]*")) {
+//
+//            if (Character.isLetter(tecla) && tecla != KeyEvent.VK_BACK_SPACE) {
+//                evt.consume();
+//                getToolkit().beep();
+//            }
+//        }
+//
+//        if (Nota1_JTextField.getText().matches("[0-9]*")) {
+//
+//            if (Character.isLetter(tecla) && tecla != KeyEvent.VK_BACK_SPACE) {
+//                evt.consume();
+//                getToolkit().beep();
+//            }
+//        }
+//
+//        if (Nota2_JTextField.getText().matches("[0-9]*")) {
+//
+//            if (Character.isLetter(tecla) && tecla != KeyEvent.VK_BACK_SPACE) {
+//                evt.consume();
+//                getToolkit().beep();
+//            }
+//        }
+//
+//        if (Nota3_JTextField.getText().matches("[0-9]*")) {
+//
+//            if (Character.isLetter(tecla) && tecla != KeyEvent.VK_BACK_SPACE) {
+//                evt.consume();
+//                getToolkit().beep();
+//            }
+//        }
+//
+//        if (segundo_nombre_JTextField.getText().matches("[0-9]*")) {
+//
+//            if (!Character.isLetter(tecla) && tecla != KeyEvent.VK_SPACE && tecla != KeyEvent.VK_BACK_SPACE) {
+//                evt.consume();
+//                getToolkit().beep();
+//            }
+//        }
+//
+//        if (primer_apellido_JTextField.getText().matches("[0-9]*")) {
+//
+//            if (!Character.isLetter(tecla) && tecla != KeyEvent.VK_SPACE && tecla != KeyEvent.VK_BACK_SPACE) {
+//                evt.consume();
+//                getToolkit().beep();
+//            }
+//        }
+//
+//        if (segundo_apellido_JTextField.getText().matches("[0-9]*")) {
+//
+//            if (!Character.isLetter(tecla) && tecla != KeyEvent.VK_SPACE && tecla != KeyEvent.VK_BACK_SPACE) {
+//                evt.consume();
+//                getToolkit().beep();
+//            }
+//        }
+
         System.out.println("keyTyped");
-    char tecla;
-    tecla=evt.getKeyChar();
-        if (!Character.isLetter(tecla)&& tecla!=KeyEvent.VK_SPACE&& tecla!=KeyEvent.VK_BACK_SPACE) {
-            evt.consume();
-            getToolkit().beep();
-        }
+
     }
-  
-   
 
     @Override
     public void keyPressed(KeyEvent e) {
-   System.out.println("keyPressed");
-}
+        System.out.println("PRESIONAR");
+    }
 
     @Override
     public void keyReleased(KeyEvent e) {
-    System.out.println("keyReleased");
-}
+        System.out.println("SOLTAR");
+    }
 
 }

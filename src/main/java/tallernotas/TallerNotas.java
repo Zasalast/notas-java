@@ -6,7 +6,7 @@ public class TallerNotas {
 
     public static void main(String[] args) {
         FormularioEstudiantes formulario;
-        formulario = new FormularioEstudiantes("Taller Notas del estudiante", 1250, 650, false, true);
+        formulario = new FormularioEstudiantes("Taller Notas del estudiante", 1450, 650, false, true);
        
 
 
